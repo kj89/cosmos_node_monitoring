@@ -34,13 +34,13 @@ sed -i 's/WALLET_ADDRESS/$WALLET_ADDRESS/g' $HOME/cosmos_node_monitoring/prometh
 Deploy the monitoring stack (Grafana + Prometheus + Node Exporter)
 ```
 cd $HOME/cosmos_node_monitoring
-docker compose --profile monitor up -d --env-file ./config/.env
+docker compose --profile monitor --env-file ./config/.env up -d
 ```
 
 Deploy the monitor stack and the alerting stack (alert manager + alerta + telegram bot)
 ```
 cd $HOME/cosmos_node_monitoring
-docker compose --profile alert up -d --env-file ./config/.env
+docker compose --profile alert --env-file ./config/.env up -d
 ```
 
 ## Firewall Rules
