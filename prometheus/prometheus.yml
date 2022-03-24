@@ -1,0 +1,80 @@
+# my global config
+global:
+  scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  # scrape_timeout is set to the global default (10s).
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets:
+      - alertmanager:9093
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+  - "alerts/alert.rules"
+  # - "second_rules.yml"
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: 'prometheus'
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+    static_configs:
+    - targets: ['localhost:9090']
+
+    # default validator node Prometheus metrics
+  - job_name: 'cosmos'
+    static_configs:
+    - targets: ["VALIDATOR_IP:26660"]
+      labels:
+        instance: validator
+
+  # node-exporter
+  - job_name: 'node'
+    static_configs: 
+    - targets: ["VALIDATOR_IP:9100"]
+      labels:
+        instance: validator
+
+  # cosmos-exporter - all validators
+  - job_name: 'validators'
+    scrape_interval: 15s
+    metrics_path: /metrics/validators
+    static_configs:
+    - targets: ["VALIDATOR_IP:9300"]
+      labels:
+        instance: validator
+
+  # cosmos-exporter - specific validator(s)
+  - job_name: 'validator'
+    scrape_interval: 15s
+    metrics_path: /metrics/validator
+    static_configs:
+      - targets:
+        - VALOPER_ADDRESS
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_address
+      - source_labels: [__param_address]
+        target_label: instance
+      - target_label: __address__
+        replacement: VALIDATOR_IP:9300
+
+  # cosmos-exporter - specific wallet(s)
+  - job_name: 'wallet'
+    scrape_interval: 15s
+    metrics_path: /metrics/wallet
+    static_configs:
+      - targets:
+        - WALLET_ADDRESS
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_address
+      - source_labels: [__param_address]
+        target_label: instance
+      - target_label: __address__
+        replacement: VALIDATOR_IP:9300

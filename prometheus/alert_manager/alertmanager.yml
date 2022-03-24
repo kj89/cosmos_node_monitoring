@@ -1,0 +1,58 @@
+global:
+  resolve_timeout: 1m
+
+templates: 
+- 'templates/*'
+
+route:
+  group_by: ['...']
+  group_wait: 0s
+  group_interval: 5m
+  repeat_interval: 1h
+  
+  routes:
+    - receiver: 'node-monitoring'
+      group_by: ['...']
+
+  receiver: node-monitoring
+
+inhibit_rules:
+- source_match:
+    severity: critical
+    alertname: 'DiskFull'
+  target_match_re:
+    alertname: '^DiskFull.*H'
+  equal: ['job', 'instance', 'mountpoint']
+
+- source_match:
+    severity: critical
+  source_match_re:
+    alertname: '^DiskFull.*H'
+  target_match:
+    severity: major
+  target_match_re:
+    alertname: '^DiskFull.*H'
+  equal: ['job', 'instance', 'mountpoint']
+
+- source_match:
+    severity: critical
+    alertname: 'InodeFull'
+  target_match_re:
+    alertname: '^InodeFull.*H'
+  equal: ['job', 'instance', 'mountpoint']
+
+- source_match:
+    severity: critical
+  source_match_re:
+    alertname: '^InodeFull.*H'
+  target_match:
+    severity: major
+  target_match_re:
+    alertname: '^InodeFull.*H'
+  equal: ['job', 'instance', 'mountpoint']
+
+receivers:
+- name: 'node-monitoring'
+  webhook_configs:
+  - send_resolved: true
+    url: 'http://monitoring_alertmanager-bot_1:8080'
