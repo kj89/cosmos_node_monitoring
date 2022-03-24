@@ -25,9 +25,9 @@ export $(xargs < $HOME/cosmos_node_monitoring/config/.env)
 
 ### update _prometheus_ configuration file
 ```
-sed -i 's/VALIDATOR_IP/$VALIDATOR_IP/g' $HOME/cosmos_node_monitoring/prometheus/prometheus.yml
-sed -i 's/VALOPER_ADDRESS/$VALOPER_ADDRESS/g' $HOME/cosmos_node_monitoring/prometheus/prometheus.yml
-sed -i 's/WALLET_ADDRESS/$WALLET_ADDRESS/g' $HOME/cosmos_node_monitoring/prometheus/prometheus.yml
+sed -i "s/VALIDATOR_IP/$VALIDATOR_IP/g" $HOME/cosmos_node_monitoring/prometheus/prometheus.yml
+sed -i "s/VALOPER_ADDRESS/$VALOPER_ADDRESS/g" $HOME/cosmos_node_monitoring/prometheus/prometheus.yml
+sed -i "s/WALLET_ADDRESS/$WALLET_ADDRESS/g" $HOME/cosmos_node_monitoring/prometheus/prometheus.yml
 ```
 
 ### start the contrainers
