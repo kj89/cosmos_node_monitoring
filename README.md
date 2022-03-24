@@ -3,7 +3,7 @@
 ## Prerequisites
 run script below to prepare your monitroring node
 ```
-wget -O install_monitoring.sh https://raw.githubusercontent.com/kj89/cosmos_node_monitoring/main/install_monitoring.sh && chmod +x install_monitoring.sh && ./install_monitoring.sh
+wget -O install_monitoring.sh https://raw.githubusercontent.com/kj89/cosmos_node_monitoring/master/install_monitoring.sh && chmod +x install_monitoring.sh && ./install_monitoring.sh
 ```
 
 ## Deployment
