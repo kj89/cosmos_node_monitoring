@@ -1,16 +1,13 @@
 #!/usr/bin/env bash
 
-if [ ! $TOKEN_NAME ]; then
-	read -p "Enter token name, for example, uatom for Cosmos: " TOKEN_NAME
-	echo 'export TOKEN_NAME='$TOKEN_NAME >> $HOME/.bash_profile
-	. ~/.bash_profile
-fi
+read -p "Enter token name, for example, uatom for Cosmos: " TOKEN_NAME
+read -p "Enter global prefix for addresses, for example, cosmos for Cosmos: " ADDRESS_PREFIX
 
-if [ ! $ADDRESS_PREFIX ]; then
-	read -p "Enter global prefix for addresses, for example, cosmos for Cosmos: " ADDRESS_PREFIX
-	echo 'export ADDRESS_PREFIX='$ADDRESS_PREFIX >> $HOME/.bash_profile
-	. ~/.bash_profile
-fi
+echo '================================================='
+echo 'Token name : ' $TOKEN_NAME
+echo 'Address prefix: ' $ADDRESS_PREFIX
+echo '================================================='
+sleep 5
 
 # install cosmos-exporter
 wget https://github.com/solarlabsteam/cosmos-exporter/releases/download/v0.2.2/cosmos-exporter_0.2.2_Linux_x86_64.tar.gz
