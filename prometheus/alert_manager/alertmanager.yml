@@ -55,4 +55,4 @@ receivers:
 - name: 'node-monitoring'
   webhook_configs:
   - send_resolved: true
-    url: 'http://monitoring_alertmanager-bot_1:8080'
+    url: 'http://alertmanager-bot:8080'
