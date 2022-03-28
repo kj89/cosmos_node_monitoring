@@ -10,7 +10,6 @@ networks:
 
 services:
   prometheus:
-    profiles: ["prometheus", "monitor"]
     image: prom/prometheus:latest
     container_name: prometheus
     volumes:
@@ -33,7 +32,6 @@ services:
 
   # default login credentials: admin/admin
   grafana:
-    profiles: ["grafana","monitor"]
     image: grafana/grafana:latest
     env_file: ./grafana/grafana.conf
     container_name: grafana
@@ -50,15 +48,14 @@ services:
     restart: always
 
   node-exporter:
-    profiles: ["node_exporter","monitor"]
     image: prom/node-exporter:latest
+    container_name: node-exporter
     ports:
       - 9100:9100
     networks:
       - cosmos-monitoring
   
   alertmanager:
-    profiles: ["alert"]
     image: prom/alertmanager:latest
     container_name: alertmanager
     networks:
@@ -78,7 +75,6 @@ services:
     restart: always
    
   alerta_db:
-    profiles: ["alert"]
     image: postgres:11
     container_name: alerta_db
     networks:
@@ -95,7 +91,6 @@ services:
     restart: always
 
   alerta:
-    profiles: ["alert"]
     image: alerta/alerta-web:latest
     container_name: alerta
     networks:
@@ -116,7 +111,7 @@ services:
     restart: always
   
   alertmanager-bot:
-    profiles: ["alert"]
+    container_name: alertmanager-bot
     command:
       - '--alertmanager.url=http://alertmanager:9093'
       - '--log.level=info'
