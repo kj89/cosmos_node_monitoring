@@ -40,9 +40,10 @@ vim $HOME/cosmos_node_monitoring/config/.env
 | TELEGRAM_ADMIN | Your user id you can get from [@userinfobot](https://t.me/userinfobot). The bot will only reply to messages sent from the user. All other messages are dropped and logged on the bot's console |
 | TELEGRAM_TOKEN | Your telegram bot access token you can get from [@botfather](https://telegram.me/botfather). To generate new token just follow a few simple steps described [here](https://core.telegram.org/bots#6-botfather) |
 
-### Export _.env_ file values
+### Export _.env_ file values into _.bash_profile_
 ```
-export $(xargs < $HOME/cosmos_node_monitoring/config/.env)
+echo "export $(xargs < $HOME/cosmos_node_monitoring/config/.env)" > $HOME/.bash_profile
+source $HOME/.bash_profile
 ```
 
 ### Update _prometheus_ configuration file
@@ -147,8 +148,15 @@ Grafana dashboard is devided into 4 sections:
 
 <img width="938" alt="image" src="https://user-images.githubusercontent.com/50621007/160630213-5e92b3ce-92c9-4f48-8856-383ca884b621.png">
 
+## Cleanup all container data
+```
+cd $HOME/cosmos_node_monitoring
+docker compose down
+docker volume prune -f
+```
+
 ## Reference list
-Materials I used:
+Resources I used in this project:
 - Grafana Validator stats [Cosmos Validator by freak12techno](https://grafana.com/grafana/dashboards/14914)
 - Grafana Hardware health [AgoricTools by Chainode](https://github.com/Chainode/AgoricTools)
 - Stack of monitoring tools, docker configuration [node_tooling by Xiphiar](https://github.com/Xiphiar/node_tooling/)
