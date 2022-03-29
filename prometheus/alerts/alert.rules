@@ -22,14 +22,14 @@ groups:
       annotations:
         description: 'Filesystem "{{ $labels.mountpoint }}" on "{{ $labels.instance }}" is read-only.'
 
-    - alert: NodeDiskFull4H
-      expr: predict_linear(node_filesystem_free_bytes{fstype!~"rootfs|nfs4|tmpfs"}[4h], 4 * 3600) < 0
+    - alert: NodeDiskFull48H
+      expr: predict_linear(node_filesystem_free_bytes{fstype!~"rootfs|nfs4|tmpfs"}[4h], 48 * 3600) < 0
       for: 5m
       labels:
         severity: major
         service: node_exporter
       annotations:
-        description: 'Filesystem "{{ $labels.mountpoint }}" on "{{ $labels.instance }}" will be out of diskspace within 4 hours.'
+        description: 'Filesystem "{{ $labels.mountpoint }}" on "{{ $labels.instance }}" will be out of diskspace within 48 hours.'
 
     - alert: NodeDiskFull1H
       expr: predict_linear(node_filesystem_free_bytes{fstype!~"rootfs|nfs4|tmpfs"}[4h], 3600) < 0
@@ -49,14 +49,14 @@ groups:
       annotations:
         description: 'Filesystem "{{ $labels.mountpoint }}" on "{{ $labels.instance }}" is out of diskspace (< 1% free).'
 
-    - alert: NodeInodeFull4H
-      expr: predict_linear(node_filesystem_files_free{fstype!~"rootfs|nfs4|tmpfs"}[4h], 4 * 3600) < 0
+    - alert: NodeInodeFull48H
+      expr: predict_linear(node_filesystem_files_free{fstype!~"rootfs|nfs4|tmpfs"}[4h], 48 * 3600) < 0
       for: 5m
       labels:
         severity: major
         service: node_exporter
       annotations:
-        description: 'Filesystem "{{ $labels.mountpoint }}" on "{{ $labels.instance }}" will be out of inode numbers within 4 hours.'
+        description: 'Filesystem "{{ $labels.mountpoint }}" on "{{ $labels.instance }}" will be out of inode numbers within 48 hours.'
 
     - alert: NodeInodeFull1H
       expr: predict_linear(node_filesystem_files_free{fstype!~"rootfs|nfs4|tmpfs"}[4h], 3600) < 0
@@ -129,15 +129,6 @@ groups:
         service: cosmos-monitoring
       annotations:
         description: 'P2P Peers on `{{ $labels.instance }}` is lower than threshold (2)'
-
-    - alert: TooFarBehind
-      expr: (tendermint_consensus_height - on() tendermint_consensus_validator_last_signed_height) > 10
-      for: 5m
-      labels:
-        severity: critical
-        service: cosmos-monitoring
-      annotations:
-        description: '`{{ $labels.instance }}` is falling behind chain height!'
 
     - alert: MissingBlocks
       expr: increase(cosmos_validator_missed_blocks[5m]) > 10
