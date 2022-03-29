@@ -59,6 +59,8 @@ cd $HOME/cosmos_node_monitoring
 docker compose up -d
 ```
 
+## Configuration
+
 ### Configure Grafana
 1. Open Grafana in your web browser. It should be available on port `9999`
 
@@ -96,6 +98,9 @@ docker compose up -d
 
 4.4. Hit **"Save"** button on the left top corner to save changes to dashboard
 
+5. Congratulations you have successfully configured Cosmos Validator Dashboard
+
+
 ### Configrure Telegram alerting
 1. Open conversation with your Telegram bot you created with [@botfather](https://telegram.me/botfather) and type `/start` to activate bot
 
@@ -104,6 +109,8 @@ docker compose up -d
 2. Now you are all set! If you want see other commands type `/help`
 
 > If you want learn more about `alermanager-bot` please visit [their github repo](https://github.com/metalmatze/alertmanager-bot/)
+
+## Testing
 
 ### Test alerts
 1. For simple test you can stop `node-exporter` service for 5 minutes. It should trigger alert
@@ -122,6 +129,23 @@ systemctl start node_exporter
 
 <img width="189" alt="image" src="https://user-images.githubusercontent.com/50621007/160623983-d69d67b8-0815-4ea2-b076-1d55cc88379d.png">
 
+## Dashboard contents
+Grafana dashboard is devided into 4 sections:
+- **Validator health** - main stats for validator health. connected peers and missed blocks
+
+<img width="939" alt="image" src="https://user-images.githubusercontent.com/50621007/160629676-bc3c4f0f-66df-4a5f-9844-dca308072e7a.png">
+
+- **Chain health** - summary of chain health stats and validators missing blocks
+
+<img width="942" alt="image" src="https://user-images.githubusercontent.com/50621007/160629937-52253f35-8782-4dd2-80cc-ad31d0231a84.png">
+
+- **Validator stats** - information about validator such as rank, bounded tokens, comission, rewards
+
+<img width="943" alt="image" src="https://user-images.githubusercontent.com/50621007/160630119-0abad099-b138-4f61-9e73-49506c2295ff.png">
+
+- **Hardware health** - metrics for hardware. cpu, ram, network usage
+
+<img width="938" alt="image" src="https://user-images.githubusercontent.com/50621007/160630213-5e92b3ce-92c9-4f48-8856-383ca884b621.png">
 
 ## Reference list
 Materials I used:
