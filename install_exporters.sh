@@ -4,8 +4,8 @@ read -p "Enter token name, for example, uatom for Cosmos: " TOKEN_NAME
 read -p "Enter global prefix for addresses, for example, cosmos for Cosmos: " ADDRESS_PREFIX
 
 echo '================================================='
-echo 'Token name : ' $TOKEN_NAME
-echo 'Address prefix: ' $ADDRESS_PREFIX
+echo -e "Token name: \e[1m\e[32m$TOKEN_NAME\e[0m"
+echo -e "Address prefix: \e[1m\e[32m$ADDRESS_PREFIX\e[0m"
 echo '================================================='
 sleep 5
 
@@ -68,10 +68,6 @@ EOF
 
 sudo systemctl daemon-reload
 sudo systemctl start node_exporter
-
-# check status
-sudo systemctl status cosmos-exporter
-sudo systemctl status node_exporter
 
 echo -e "\e[1m\e[32mInstallation finished... \e[0m" && sleep 1
 echo -e "\e[1m\e[32mPlease make sure ports 9100 and 9500 are open \e[0m" && sleep 1
