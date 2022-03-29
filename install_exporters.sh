@@ -9,6 +9,7 @@ echo 'Address prefix: ' $ADDRESS_PREFIX
 echo '================================================='
 sleep 5
 
+echo -e "\e[1m\e[32m1. Installing cosmos-exporter... \e[0m" && sleep 1
 # install cosmos-exporter
 wget https://github.com/solarlabsteam/cosmos-exporter/releases/download/v0.2.2/cosmos-exporter_0.2.2_Linux_x86_64.tar.gz
 tar xvfz cosmos-exporter*
@@ -41,6 +42,7 @@ EOF
 sudo systemctl enable cosmos-exporter
 sudo systemctl start cosmos-exporter
 
+echo -e "\e[1m\e[32m2. Installing node-exporter... \e[0m" && sleep 1
 # install node-exporter
 wget https://github.com/prometheus/node_exporter/releases/download/v1.3.1/node_exporter-1.3.1.linux-amd64.tar.gz
 tar xvfz node_exporter-*.*-amd64.tar.gz
@@ -70,3 +72,6 @@ sudo systemctl start node_exporter
 # check status
 sudo systemctl status cosmos-exporter
 sudo systemctl status node_exporter
+
+echo -e "\e[1m\e[32mInstallation finished... \e[0m" && sleep 1
+echo -e "\e[1m\e[32mPlease make sure ports 9100 and 9500 are open \e[0m" && sleep 1
