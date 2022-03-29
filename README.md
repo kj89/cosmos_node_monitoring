@@ -59,7 +59,73 @@ cd $HOME/cosmos_node_monitoring
 docker compose up -d
 ```
 
-### Configure grafana
-1. Open Grafana in your web browser
-2. Change admin password. Defaults are `admin/admin`
+### Configure Grafana
+1. Open Grafana in your web browser. It should be available on port `9999`
+
+<img width="421" alt="image" src="https://user-images.githubusercontent.com/50621007/160622455-09af4fbf-2efb-4afb-a8f8-57a2b247f705.png">
+
+2. Login using defaults `admin/admin` and change password
+
 3. Import custom dashboard
+
+3.1. Press "+" icon on the left panel and then choose **"Import"**
+
+<img width="181" alt="image" src="https://user-images.githubusercontent.com/50621007/160622732-aa9fe887-823c-4586-9fad-4c2c7fdf5011.png">
+
+3.2. Input grafana.com dashboard id `15991` and press **"Load"**
+
+<img width="336" alt="image" src="https://user-images.githubusercontent.com/50621007/160625753-b9f11287-a3ba-4529-96f9-7c9113c6df3a.png">
+
+3.3. Select Prometheus data source and press **"Import"**
+
+<img width="369" alt="image" src="https://user-images.githubusercontent.com/50621007/160623287-0340acf8-2d30-47e7-8a3a-56295bea8a15.png">
+
+4. Change your chain explorer url
+
+4.1. Edit **"Top validators missing blocks panel"**
+
+<img width="311" alt="image" src="https://user-images.githubusercontent.com/50621007/160623476-50d8bf62-03cd-4de6-92de-53bc2df830cc.png">
+
+4.2. Go to **"Overrides"** and edit **"Data links"**
+
+<img width="456" alt="image" src="https://user-images.githubusercontent.com/50621007/160623555-ae7e9d54-9a0b-4ec9-9b1d-278fafe06682.png">
+
+4.3 Change url to your chain data explorer and hit **"Save"**
+
+<img width="373" alt="image" src="https://user-images.githubusercontent.com/50621007/160623647-1f23a1dc-35b0-494f-8ba4-fb4d90f1b0c5.png">
+
+4.4. Hit **"Save"** button on the left top corner to save changes to dashboard
+
+### Configrure Telegram alerting
+1. Open conversation with your Telegram bot you created with [@botfather](https://telegram.me/botfather) and type `/start` to activate bot
+
+<img width="193" alt="image" src="https://user-images.githubusercontent.com/50621007/160623782-e18a42c4-659d-477b-9189-43d9027d518c.png">
+
+2. Now you are all set! If you want see other commands type `/help`
+
+> If you want learn more about `alermanager-bot` please visit [their github repo](https://github.com/metalmatze/alertmanager-bot/)
+
+### Test alerts
+1. For simple test you can stop `node-exporter` service for 5 minutes. It should trigger alert
+```
+systemctl stop node_exporter
+```
+2. You will see message from bot firing
+
+<img width="214" alt="image" src="https://user-images.githubusercontent.com/50621007/160623897-5c373079-2ae8-4a6f-95f6-1e8d0596617e.png">
+
+3. Now you can start `node-exporter` service back
+```
+systemctl start node_exporter
+```
+4. You will get confirmation from bot that issue is resolved
+
+<img width="189" alt="image" src="https://user-images.githubusercontent.com/50621007/160623983-d69d67b8-0815-4ea2-b076-1d55cc88379d.png">
+
+
+## Reference list
+Materials I used:
+- Grafana Validator stats [Cosmos Validator by freak12techno](https://grafana.com/grafana/dashboards/14914)
+- Grafana Hardware health [AgoricTools by Chainode](https://github.com/Chainode/AgoricTools)
+- Stack of monitoring tools, docker configuration [node_tooling by Xiphiar](https://github.com/Xiphiar/node_tooling/)
+- Alertmanager telegram bot [alertmanager-bot by metalmatze](https://github.com/metalmatze/alertmanager-bot)
