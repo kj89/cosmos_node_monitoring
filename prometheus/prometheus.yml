@@ -26,7 +26,7 @@ scrape_configs:
     static_configs:
     - targets: ['localhost:9090']
 
-    # default validator node Prometheus metrics
+  # default validator node Prometheus metrics
   - job_name: 'cosmos'
     static_configs:
     - targets: ["VALIDATOR_IP:26660"]

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-read -p "Enter token name, for example, uatom for Cosmos: " TOKEN_NAME
-read -p "Enter global prefix for addresses, for example, cosmos for Cosmos: " ADDRESS_PREFIX
+read -p "Enter token name, for example, ubld for Agoric: " TOKEN_NAME
+read -p "Enter global prefix for addresses, for example, agoric for Agoric: " ADDRESS_PREFIX
 
 echo '================================================='
 echo -e "Token name: \e[1m\e[32m$TOKEN_NAME\e[0m"
