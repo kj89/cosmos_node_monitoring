@@ -1,4 +1,77 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_PROMETHEUS",
+      "label": "Prometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
+  "__elements": [],
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "bargauge",
+      "name": "Bar gauge",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "gauge",
+      "name": "Gauge",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "8.4.4"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph (old)",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "table-old",
+      "name": "Table (old)",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "text",
+      "name": "Text",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -23,8 +96,8 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 14914,
   "graphTooltip": 0,
-  "id": 1,
-  "iteration": 1648140371537,
+  "id": null,
+  "iteration": 1648551259177,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -44,10 +117,10 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "${DS_PROMETHEUS}"
       },
       "gridPos": {
-        "h": 4,
+        "h": 8,
         "w": 4,
         "x": 0,
         "y": 1
@@ -61,11 +134,73 @@
         }
       ],
       "options": {
-        "content": "<center><img width=\"300px\" src=\"https://i.ibb.co/zXm7nzr/horiz-color.png\" />",
+        "content": "\r\n<table style=\"width:100%; height:100%;border:0px solid black;\">\r\n     <td style=\"text-align: center;vertical-align: middle;border:0px solid black; \"><center><img width=\"300px\" src=\"https://i.ibb.co/zXm7nzr/horiz-color.png\" /></td>\r\n</table>",
         "mode": "html"
       },
       "pluginVersion": "8.4.4",
       "type": "text"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "max": 1,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "bool"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 2,
+        "x": 4,
+        "y": 1
+      },
+      "id": 25,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": false
+      },
+      "pluginVersion": "8.4.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "cosmos_validators_active{chain_id=\"$chain_id\", moniker=\"$moniker\"}",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "Active",
+      "type": "gauge"
     },
     {
       "description": "Number of peers node's connected to\n\n(Need to change Threshold)",
@@ -109,7 +244,7 @@
       "gridPos": {
         "h": 8,
         "w": 3,
-        "x": 4,
+        "x": 6,
         "y": 1
       },
       "id": 27,
@@ -135,7 +270,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": false,
           "expr": "tendermint_p2p_peers{chain_id=\"$chain_id\"}",
@@ -197,7 +332,7 @@
       "gridPos": {
         "h": 8,
         "w": 3,
-        "x": 7,
+        "x": 9,
         "y": 1
       },
       "id": 61,
@@ -223,7 +358,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": false,
           "expr": "cosmos_validator_missed_blocks{chain_id=\"$chain_id\", moniker=\"$moniker\"}",
@@ -305,8 +440,8 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 14,
-        "x": 10,
+        "w": 12,
+        "x": 12,
         "y": 1
       },
       "id": 60,
@@ -328,7 +463,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "cosmos_validators_missed_blocks{chain_id=\"$chain_id\", moniker=\"$moniker\"}",
@@ -356,68 +491,6 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
-                "value": null
-              },
-              {
-                "color": "green",
-                "value": 1
-              }
-            ]
-          },
-          "unit": "bool"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 2,
-        "x": 0,
-        "y": 5
-      },
-      "id": 25,
-      "options": {
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": false
-      },
-      "pluginVersion": "8.4.4",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "exemplar": true,
-          "expr": "cosmos_validators_active{chain_id=\"$chain_id\", moniker=\"$moniker\"}",
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "title": "Active",
-      "type": "gauge"
-    },
-    {
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "max": 1,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
                 "color": "green",
                 "value": null
               },
@@ -434,7 +507,7 @@
       "gridPos": {
         "h": 4,
         "w": 2,
-        "x": 2,
+        "x": 4,
         "y": 5
       },
       "id": 54,
@@ -455,7 +528,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "tendermint_consensus_state_syncing{chain_id=\"$chain_id\"}",
@@ -540,7 +613,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": false,
           "expr": "tendermint_consensus_height{chain_id=\"$chain_id\"}",
@@ -628,7 +701,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": false,
           "expr": "tendermint_consensus_validators-tendermint_consensus_missing_validators{chain_id=\"$chain_id\"}",
@@ -707,7 +780,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": false,
           "expr": "tendermint_consensus_missing_validators{chain_id=\"$chain_id\"}",
@@ -782,7 +855,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": false,
           "expr": "tendermint_consensus_total_txs{chain_id=\"$chain_id\"}",
@@ -869,10 +942,10 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": false,
-          "expr": "count(cosmos_validators_missed_blocks{chain_id=\"$chain_id\"} > 0)",
+          "expr": "count(cosmos_validators_missed_blocks{chain_id=\"$chain_id\"} > 0) OR on() vector(0)",
           "format": "time_series",
           "hide": false,
           "instant": true,
@@ -940,7 +1013,7 @@
                   {
                     "targetBlank": true,
                     "title": "",
-                    "url": "https://agoric.bigdipper.live/validators/${__data.fields[\"address\"]}"
+                    "url": "https://devnet.explorer.agoric.net/validator/${__data.fields[\"address\"]}"
                   }
                 ]
               }
@@ -988,10 +1061,10 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": false,
-          "expr": "sort_desc(topk(10, cosmos_validators_missed_blocks{chain_id=\"$chain_id\"}  >0))",
+          "expr": "sort_desc(topk(10, cosmos_validators_missed_blocks{chain_id=\"$chain_id\"} > 0))",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -1077,7 +1150,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "tendermint_consensus_validators_power{chain_id=\"$chain_id\"}",
@@ -1157,7 +1230,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": false,
           "expr": "tendermint_consensus_missing_validators_power{chain_id=\"$chain_id\"}",
@@ -1236,7 +1309,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": false,
           "expr": "(tendermint_consensus_missing_validators_power{chain_id=\"$chain_id\"} / tendermint_consensus_validators_power{chain_id=\"$chain_id\"})",
@@ -1319,7 +1392,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": false,
           "expr": "tendermint_mempool_size{chain_id=\"$chain_id\"}",
@@ -1406,7 +1479,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": false,
           "expr": "max(cosmos_validators_missed_blocks{chain_id=\"$chain_id\"})",
@@ -1490,7 +1563,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": false,
           "expr": "round(increase(tendermint_consensus_height{chain_id=\"$chain_id\"}[1m]))",
@@ -1587,7 +1660,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "increase(tendermint_consensus_height{chain_id=\"$chain_id\"}[1m])",
@@ -1680,7 +1753,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "tendermint_consensus_block_size_bytes{chain_id=\"$chain_id\"}",
@@ -1758,7 +1831,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "cosmos_validator_jailed{chain_id=\"$chain_id\", moniker=\"$moniker\"}",
@@ -1820,7 +1893,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "sort(cosmos_validator_rank{chain_id=\"$chain_id\", moniker=\"$moniker\"})",
@@ -1880,7 +1953,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": false,
           "expr": "sum(cosmos_validator_delegations{chain_id=\"$chain_id\", moniker=\"$moniker\"}) by (denom)",
@@ -1946,7 +2019,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "cosmos_validator_commission_rate{chain_id=\"$chain_id\", moniker=\"$moniker\"}",
@@ -2008,7 +2081,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "count(cosmos_validator_delegations{chain_id=\"$chain_id\", moniker=\"$moniker\"})",
@@ -2071,7 +2144,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "count(cosmos_validator_redelegations{chain_id=\"$chain_id\", moniker=\"$moniker\"}) OR on() vector(0)",
@@ -2134,7 +2207,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "count(cosmos_validator_unbondings{chain_id=\"$chain_id\", moniker=\"$moniker\"}) OR on() vector(0)",
@@ -2327,7 +2400,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": false,
           "expr": "cosmos_validator_delegations{chain_id=\"$chain_id\", moniker=\"$moniker\"}",
@@ -2412,7 +2485,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "sum(cosmos_validator_redelegations{chain_id=\"$chain_id\", moniker=\"$moniker\"}) by (moniker, denom)",
@@ -2546,7 +2619,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": false,
           "expr": "cosmos_validator_redelegations{chain_id=\"$chain_id\", moniker=\"$moniker\"} ",
@@ -2758,7 +2831,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": false,
           "expr": "cosmos_validator_unbondings{chain_id=\"$chain_id\", moniker=\"$moniker\"} ",
@@ -2929,7 +3002,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "cosmos_validator_commission{chain_id=\"$chain_id\", moniker=\"$moniker\"}",
@@ -3056,7 +3129,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": false,
           "expr": "sum(time() - node_boot_time_seconds{instance=\"$instance\"})",
@@ -3137,7 +3210,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": false,
           "expr": "count(count(node_cpu_seconds_total{instance=~\"$instance\", mode='system'}) by (cpu))",
@@ -3211,7 +3284,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": false,
           "expr": "100 - (avg by(alias) (irate(node_cpu_seconds_total{instance=~\"$instance\", mode=\"idle\"}[1m])) * 100)",
@@ -3224,7 +3297,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": false,
           "expr": "(1 - (node_memory_MemAvailable_bytes{instance=~\"$instance\"} / (node_memory_MemTotal_bytes{instance=~\"$instance\"})))* 100",
@@ -3237,7 +3310,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "(1 - (node_memory_SwapFree_bytes{instance=~\"$instance\"} / node_memory_SwapTotal_bytes{instance=~\"$instance\"})) * 100",
@@ -3250,7 +3323,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "100 - (node_filesystem_free_bytes{instance=~\"$instance\", device=\"/dev/sda2\"} *100 / node_filesystem_size_bytes{instance=~\"$instance\", device=\"/dev/sda2\"})",
@@ -3263,7 +3336,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "100 - (node_filesystem_free_bytes{instance=~\"$instance\", device=\"/dev/sda1\"} *100 / node_filesystem_size_bytes{instance=~\"$instance\", device=\"/dev/sda1\"})",
@@ -3334,7 +3407,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "node_filefd_allocated{instance=~\"$instance\"}",
@@ -3494,7 +3567,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": false,
           "expr": "node_filesystem_size_bytes{instance=~'$instance',fstype=~\"ext4|xfs\"}",
@@ -3509,7 +3582,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": false,
           "expr": "node_filesystem_avail_bytes {instance=~'$instance',fstype=~\"ext4|xfs\"}",
@@ -3524,7 +3597,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": false,
           "expr": "1-(node_filesystem_free_bytes{instance=~'$instance',fstype=~\"ext4|xfs\"} / node_filesystem_size_bytes{instance=~'$instance',fstype=~\"ext4|xfs\"})",
@@ -3539,7 +3612,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "",
           "format": "table",
@@ -3613,7 +3686,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": false,
           "expr": "node_memory_MemTotal_bytes{instance=~\"$instance\"}",
@@ -3701,7 +3774,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "node_load1{instance=~\"$instance\"}*100",
@@ -3715,7 +3788,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "node_load5{instance=~\"$instance\"}*100",
@@ -3729,7 +3802,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "node_load15{instance=~\"$instance\"}*100",
@@ -3877,7 +3950,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "avg(irate(node_cpu_seconds_total{instance=~\"$instance\",mode=\"system\"}[1m]))",
@@ -3892,7 +3965,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "avg(irate(node_cpu_seconds_total{instance=~\"$instance\",mode=\"user\"}[1m]))",
@@ -3906,7 +3979,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "avg(irate(node_cpu_seconds_total{instance=~\"$instance\",mode=\"idle\"}[1m]))",
@@ -3921,7 +3994,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "avg(irate(node_cpu_seconds_total{instance=~\"$instance\",mode=\"iowait\"}[1m]))",
@@ -3935,7 +4008,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "irate(node_disk_io_time_seconds_total{instance=~\"$instance\"}[1m])",
@@ -3948,7 +4021,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "avg(irate(node_cpu_seconds_total{mode=\"system\"}[1m]))",
@@ -4056,7 +4129,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "irate(node_disk_reads_completed_total{instance=~\"$instance\"}[1m])",
@@ -4071,7 +4144,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "irate(node_disk_writes_completed_total{instance=~\"$instance\"}[1m])",
@@ -4086,7 +4159,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "node_disk_io_now{instance=~\"$instance\"}",
@@ -4187,7 +4260,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "irate(node_disk_read_bytes_total{instance=~\"$instance\"}[1m])",
@@ -4201,7 +4274,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "irate(node_disk_written_bytes_total{instance=~\"$instance\"}[1m])",
@@ -4304,7 +4377,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "irate(node_disk_io_time_seconds_total{instance=~\"$instance\"}[1m])",
@@ -4319,7 +4392,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "irate(node_disk_io_time_weighted_seconds_total{instance=~\"$instance\"}[1m])",
@@ -4333,7 +4406,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "irate(node_disk_read_time_seconds_total{instance=~\"$instance\"}[1m])",
@@ -4347,7 +4420,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "irate(node_disk_write_time_seconds_total{instance=~\"$instance\"}[1m])",
@@ -4444,7 +4517,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "irate(node_network_receive_bytes_total{instance=~'$instance',device!~'tap.*'}[5m])*8",
@@ -4458,7 +4531,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "irate(node_network_transmit_bytes_total{instance=~'$instance',device!~'tap.*'}[5m])*8",
@@ -4552,7 +4625,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "node_netstat_Tcp_CurrEstab{instance=~'$instance'}",
@@ -4567,7 +4640,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "node_sockstat_TCP_tw{instance=~'$instance'}",
@@ -4580,7 +4653,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "irate(node_netstat_Tcp_ActiveOpens{instance=~'$instance'}[1m])",
@@ -4594,7 +4667,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "irate(node_netstat_Tcp_PassiveOpens{instance=~'$instance'}[1m])",
@@ -4607,7 +4680,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "node_sockstat_TCP_alloc{instance=~'$instance'}",
@@ -4620,7 +4693,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "node_sockstat_TCP_inuse{instance=~'$instance'}",
@@ -4664,7 +4737,7 @@
       }
     }
   ],
-  "refresh": "",
+  "refresh": false,
   "schemaVersion": 35,
   "style": "dark",
   "tags": [
@@ -4675,35 +4748,8 @@
   "templating": {
     "list": [
       {
-        "current": {
-          "selected": false,
-          "text": "augusta-1",
-          "value": "augusta-1"
-        },
+        "current": {},
         "definition": "label_values(cosmos_validators_status, chain_id)",
-        "error": {
-          "config": {
-            "data": {
-              "end": "1648140372",
-              "match[]": "cosmos_validators_status",
-              "start": "1648140072"
-            },
-            "headers": {
-              "Content-Type": "application/x-www-form-urlencoded",
-              "X-Grafana-Org-Id": 1
-            },
-            "hideFromInspector": true,
-            "method": "POST",
-            "retry": 0,
-            "url": "api/datasources/proxy/16/api/v1/series"
-          },
-          "data": {
-            "message": "Unable to find datasource"
-          },
-          "message": "Unable to find datasource",
-          "status": 404,
-          "statusText": "Not Found"
-        },
         "hide": 0,
         "includeAll": false,
         "label": "chain_id",
@@ -4718,38 +4764,12 @@
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
-        "type": "query"
+        "type": "query",
+        "datasource": "${DS_PROMETHEUS}"
       },
       {
-        "current": {
-          "selected": false,
-          "text": "kjnodes",
-          "value": "kjnodes"
-        },
+        "current": {},
         "definition": "label_values(cosmos_validator_active, moniker)",
-        "error": {
-          "config": {
-            "data": {
-              "end": "1648140372",
-              "match[]": "cosmos_validator_active",
-              "start": "1648140072"
-            },
-            "headers": {
-              "Content-Type": "application/x-www-form-urlencoded",
-              "X-Grafana-Org-Id": 1
-            },
-            "hideFromInspector": true,
-            "method": "POST",
-            "retry": 0,
-            "url": "api/datasources/proxy/16/api/v1/series"
-          },
-          "data": {
-            "message": "Unable to find datasource"
-          },
-          "message": "Unable to find datasource",
-          "status": 404,
-          "statusText": "Not Found"
-        },
         "hide": 0,
         "includeAll": false,
         "label": "moniker",
@@ -4764,38 +4784,12 @@
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
-        "type": "query"
+        "type": "query",
+        "datasource": "${DS_PROMETHEUS}"
       },
       {
-        "current": {
-          "selected": false,
-          "text": "validator",
-          "value": "validator"
-        },
+        "current": {},
         "definition": "label_values(node_memory_MemTotal_bytes, instance)",
-        "error": {
-          "config": {
-            "data": {
-              "end": "1648140372",
-              "match[]": "node_memory_MemTotal_bytes",
-              "start": "1648140072"
-            },
-            "headers": {
-              "Content-Type": "application/x-www-form-urlencoded",
-              "X-Grafana-Org-Id": 1
-            },
-            "hideFromInspector": true,
-            "method": "POST",
-            "retry": 0,
-            "url": "api/datasources/proxy/16/api/v1/series"
-          },
-          "data": {
-            "message": "Unable to find datasource"
-          },
-          "message": "Unable to find datasource",
-          "status": 404,
-          "statusText": "Not Found"
-        },
         "hide": 0,
         "includeAll": false,
         "multi": false,
@@ -4809,18 +4803,19 @@
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
-        "type": "query"
+        "type": "query",
+        "datasource": "${DS_PROMETHEUS}"
       }
     ]
   },
   "time": {
-    "from": "now-5m",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Cosmos Validator",
   "uid": "cosmos_validator",
-  "version": 30,
+  "version": 15,
   "weekStart": ""
 }
