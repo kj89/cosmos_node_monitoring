@@ -65,7 +65,7 @@ docker compose up -d
 ### Configure Grafana
 1. Open Grafana in your web browser. It should be available on port `9999`
 
-<img width="421" alt="image" src="https://user-images.githubusercontent.com/50621007/160622455-09af4fbf-2efb-4afb-a8f8-57a2b247f705.png">
+![image](https://user-images.githubusercontent.com/50621007/160622455-09af4fbf-2efb-4afb-a8f8-57a2b247f705.png)
 
 2. Login using defaults `admin/admin` and change password
 
@@ -73,29 +73,29 @@ docker compose up -d
 
 3.1. Press "+" icon on the left panel and then choose **"Import"**
 
-<img width="181" alt="image" src="https://user-images.githubusercontent.com/50621007/160622732-aa9fe887-823c-4586-9fad-4c2c7fdf5011.png">
+![image](https://user-images.githubusercontent.com/50621007/160622732-aa9fe887-823c-4586-9fad-4c2c7fdf5011.png)
 
 3.2. Input grafana.com dashboard id `15991` and press **"Load"**
 
-<img width="336" alt="image" src="https://user-images.githubusercontent.com/50621007/160625753-b9f11287-a3ba-4529-96f9-7c9113c6df3a.png">
+![image](https://user-images.githubusercontent.com/50621007/160625753-b9f11287-a3ba-4529-96f9-7c9113c6df3a.png)
 
 3.3. Select Prometheus data source and press **"Import"**
 
-<img width="369" alt="image" src="https://user-images.githubusercontent.com/50621007/160623287-0340acf8-2d30-47e7-8a3a-56295bea8a15.png">
+![image](https://user-images.githubusercontent.com/50621007/160623287-0340acf8-2d30-47e7-8a3a-56295bea8a15.png)
 
 4. Change your chain explorer url
 
 4.1. Edit **"Top validators missing blocks panel"**
 
-<img width="311" alt="image" src="https://user-images.githubusercontent.com/50621007/160623476-50d8bf62-03cd-4de6-92de-53bc2df830cc.png">
+![image](https://user-images.githubusercontent.com/50621007/160623476-50d8bf62-03cd-4de6-92de-53bc2df830cc.png)
 
 4.2. Go to **"Overrides"** and edit **"Data links"**
 
-<img width="456" alt="image" src="https://user-images.githubusercontent.com/50621007/160623555-ae7e9d54-9a0b-4ec9-9b1d-278fafe06682.png">
+![image](https://user-images.githubusercontent.com/50621007/160623555-ae7e9d54-9a0b-4ec9-9b1d-278fafe06682.png)
 
 4.3 Change url to your chain data explorer and hit **"Save"**
 
-<img width="373" alt="image" src="https://user-images.githubusercontent.com/50621007/160623647-1f23a1dc-35b0-494f-8ba4-fb4d90f1b0c5.png">
+![image](https://user-images.githubusercontent.com/50621007/160623647-1f23a1dc-35b0-494f-8ba4-fb4d90f1b0c5.png)
 
 4.4. Hit **"Save"** button on the left top corner to save changes to dashboard
 
@@ -105,7 +105,7 @@ docker compose up -d
 ### Configrure Telegram alerting
 1. Open conversation with your Telegram bot you created with [@botfather](https://telegram.me/botfather) and type `/start` to activate bot
 
-<img width="193" alt="image" src="https://user-images.githubusercontent.com/50621007/160623782-e18a42c4-659d-477b-9189-43d9027d518c.png">
+![image](https://user-images.githubusercontent.com/50621007/160623782-e18a42c4-659d-477b-9189-43d9027d518c.png)
 
 2. Now you are all set! If you want see other commands type `/help`
 
@@ -120,7 +120,7 @@ systemctl stop node_exporter
 ```
 2. You will see message from bot firing
 
-<img width="214" alt="image" src="https://user-images.githubusercontent.com/50621007/160623897-5c373079-2ae8-4a6f-95f6-1e8d0596617e.png">
+![image](https://user-images.githubusercontent.com/50621007/161050843-889edc5e-4e27-4778-9010-b9e9e861cc74.png)
 
 3. Now you can start `node-exporter` service back
 ```
@@ -128,25 +128,25 @@ systemctl start node_exporter
 ```
 4. You will get confirmation from bot that issue is resolved
 
-<img width="189" alt="image" src="https://user-images.githubusercontent.com/50621007/160623983-d69d67b8-0815-4ea2-b076-1d55cc88379d.png">
+![image](https://user-images.githubusercontent.com/50621007/161051501-6e87cbb1-6699-4557-81ed-9564db57a76f.png)
 
 ## Dashboard contents
 Grafana dashboard is devided into 4 sections:
 - **Validator health** - main stats for validator health. connected peers and missed blocks
 
-<img width="939" alt="image" src="https://user-images.githubusercontent.com/50621007/160629676-bc3c4f0f-66df-4a5f-9844-dca308072e7a.png">
+![image](https://user-images.githubusercontent.com/50621007/160629676-bc3c4f0f-66df-4a5f-9844-dca308072e7a.png)
 
 - **Chain health** - summary of chain health stats and validators missing blocks
 
-<img width="942" alt="image" src="https://user-images.githubusercontent.com/50621007/160629937-52253f35-8782-4dd2-80cc-ad31d0231a84.png">
+![image](https://user-images.githubusercontent.com/50621007/160629937-52253f35-8782-4dd2-80cc-ad31d0231a84.png)
 
 - **Validator stats** - information about validator such as rank, bounded tokens, comission, rewards
 
-<img width="943" alt="image" src="https://user-images.githubusercontent.com/50621007/160630119-0abad099-b138-4f61-9e73-49506c2295ff.png">
+![image](https://user-images.githubusercontent.com/50621007/160630119-0abad099-b138-4f61-9e73-49506c2295ff.png)
 
 - **Hardware health** - metrics for hardware. cpu, ram, network usage
 
-<img width="938" alt="image" src="https://user-images.githubusercontent.com/50621007/160630213-5e92b3ce-92c9-4f48-8856-383ca884b621.png">
+![image](https://user-images.githubusercontent.com/50621007/160630213-5e92b3ce-92c9-4f48-8856-383ca884b621.png)
 
 ## Cleanup all container data
 ```
