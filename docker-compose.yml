@@ -55,25 +55,6 @@ services:
     networks:
       - cosmos-monitoring
   
-  alertmanager:
-    image: prom/alertmanager:latest
-    container_name: alertmanager
-    networks:
-      - cosmos-monitoring
-    ports:
-      - 9093:9093
-    volumes:
-      - type: bind
-        source: ./prometheus/alert_manager
-        target: /etc/alertmanager
-        read_only: true
-    command: [
-      '--config.file=/etc/alertmanager/alertmanager.yml',
-      '--log.level=debug',
-    ]
-    hostname: 'alertmanager'
-    restart: always
-   
   alerta_db:
     image: postgres:11
     container_name: alerta_db
@@ -109,7 +90,26 @@ services:
       - PLUGINS=reject,blackout
     hostname: 'alerta'
     restart: always
-  
+
+  alertmanager:
+    image: prom/alertmanager:latest
+    container_name: alertmanager
+    networks:
+      - cosmos-monitoring
+    ports:
+      - 9093:9093
+    volumes:
+      - type: bind
+        source: ./prometheus/alert_manager
+        target: /etc/alertmanager
+        read_only: true
+    command: [
+      '--config.file=/etc/alertmanager/alertmanager.yml',
+      '--log.level=debug',
+    ]
+    hostname: 'alertmanager'
+    restart: always
+
   alertmanager-bot:
     container_name: alertmanager-bot
     command:
@@ -117,9 +117,8 @@ services:
       - '--log.level=info'
       - '--store=bolt'
       - '--bolt.path=/data/bot.db'
-    environment:
-      TELEGRAM_ADMIN: ${TELEGRAM_ADMIN}
-      TELEGRAM_TOKEN: ${TELEGRAM_TOKEN}
+      - "--telegram.admin=${TELEGRAM_ADMIN}"
+      - "--telegram.token=${TELEGRAM_TOKEN}"
     image: metalmatze/alertmanager-bot:0.4.3
     networks:
       - cosmos-monitoring
@@ -129,3 +128,4 @@ services:
     restart: always
     volumes:
       - ./data:/data
+      - ./prometheus/alert_manager/templates:/templates
