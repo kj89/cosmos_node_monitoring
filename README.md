@@ -9,7 +9,7 @@ wget -O install_exporters.sh https://raw.githubusercontent.com/kj89/cosmos_node_
 ```
 make sure following ports are open:
 - `9100` (node-exporter)
-- `9500` (cosmos-exporter)
+- `9300` (cosmos-exporter)
 
 ## Deployment
 
