@@ -7,7 +7,7 @@ echo '================================================='
 echo -e "Token name: \e[1m\e[32m$TOKEN_NAME\e[0m"
 echo -e "Address prefix: \e[1m\e[32m$ADDRESS_PREFIX\e[0m"
 echo '================================================='
-sleep 5
+sleep 3
 
 echo -e "\e[1m\e[32m1. Installing cosmos-exporter... \e[0m" && sleep 1
 # install cosmos-exporter
