@@ -7,6 +7,12 @@ First of all you will have to install exporters on validator node. For that you 
 ```
 wget -O install_exporters.sh https://raw.githubusercontent.com/kj89/cosmos_node_monitoring/master/install_exporters.sh && chmod +x install_exporters.sh && ./install_exporters.sh
 ```
+
+| KEY |VALUE |
+|---------------|-------------|
+| **bond_denom** | Denominated token name, for example, `ubld` for Agoric. You can find it in genesis file |
+| **bench_prefix** | Prefix for chain addresses, for example, `agoric` for Agoric. You can find it in public addresses like this **agoric**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
+
 make sure following ports are open:
 - `9100` (node-exporter)
 - `9300` (cosmos-exporter)
@@ -59,6 +65,12 @@ Deploy the monitoring stack
 cd $HOME/cosmos_node_monitoring
 docker compose up -d
 ```
+
+ports used:
+- `8080` (alertmanager-bot)
+- `9090` (prometheus)
+- `9093` (alertmanager)
+- `9999` (grafana)
 
 ## Configuration
 

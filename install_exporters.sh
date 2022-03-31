@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-read -p "Enter token name, for example, ubld for Agoric: " TOKEN_NAME
-read -p "Enter global prefix for addresses, for example, agoric for Agoric: " ADDRESS_PREFIX
+read -p "Enter bond_denom value, for example, ubld for Agoric: " BOND_DENOM
+read -p "Enter bench_prefix value, for example, agoric for Agoric: " BENCH_PREFIX
 
 echo '================================================='
-echo -e "Token name: \e[1m\e[32m$TOKEN_NAME\e[0m"
-echo -e "Address prefix: \e[1m\e[32m$ADDRESS_PREFIX\e[0m"
+echo -e "bond_denom: \e[1m\e[32m$BOND_DENOM\e[0m"
+echo -e "bench_prefix: \e[1m\e[32m$BENCH_PREFIX\e[0m"
 echo '================================================='
 sleep 3
 
@@ -29,7 +29,7 @@ Group=cosmos_exporter
 TimeoutStartSec=0
 CPUWeight=95
 IOWeight=95
-ExecStart=cosmos-exporter --denom $TOKEN_NAME --denom-coefficient 1000000 --bech-prefix $ADDRESS_PREFIX
+ExecStart=cosmos-exporter --denom $BOND_DENOM --denom-coefficient 1000000 --bech-prefix $BENCH_PREFIX
 Restart=always
 RestartSec=2
 LimitNOFILE=800000
