@@ -136,15 +136,15 @@ Grafana dashboard is devided into 4 sections:
 
 ![image](https://user-images.githubusercontent.com/50621007/160629676-bc3c4f0f-66df-4a5f-9844-dca308072e7a.png)
 
-- **Chain health** - summary of chain health stats and validators missing blocks
+- **Chain health** - summary of chain health stats and list of top validators missing blocks
 
 ![image](https://user-images.githubusercontent.com/50621007/160629937-52253f35-8782-4dd2-80cc-ad31d0231a84.png)
 
-- **Validator stats** - information about validator such as rank, bounded tokens, comission, rewards
+- **Validator stats** - information about validator such as rank, bounded tokens, comission, delegations and rewards
 
 ![image](https://user-images.githubusercontent.com/50621007/160630119-0abad099-b138-4f61-9e73-49506c2295ff.png)
 
-- **Hardware health** - metrics for hardware. cpu, ram, network usage
+- **Hardware health** - system hardware metrics. cpu, ram, network usage
 
 ![image](https://user-images.githubusercontent.com/50621007/160630213-5e92b3ce-92c9-4f48-8856-383ca884b621.png)
 
