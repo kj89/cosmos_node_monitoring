@@ -128,4 +128,4 @@ services:
     restart: always
     volumes:
       - ./data:/data
-      - ./prometheus/alert_manager/templates:/templates
+      - ./default.tmpl:/templates/default.tmpl
