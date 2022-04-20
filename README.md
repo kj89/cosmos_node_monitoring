@@ -1,4 +1,4 @@
-# Instructions
+# Instructions on how to set up monitoring stack for your cosmos validator
 
 ## Prerequisites
 

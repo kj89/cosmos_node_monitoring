@@ -128,7 +128,7 @@ groups:
         severity: major
         service: cosmos-monitoring
       annotations:
-        description: 'P2P Peers on `{{ $labels.instance }}` is lower than threshold (2)'
+        description: 'P2P Peers on `{{ $labels.instance }}` is lower than threshold (current value: {{ $value }})'
 
     - alert: MissingBlocks
       expr: increase(cosmos_validator_missed_blocks[5m]) > 10
@@ -137,7 +137,7 @@ groups:
         severity: major
         service: cosmos-monitoring
       annotations:
-        description: 'Validator `{{ $labels.moniker }}` is missing blocks!'
+        description: 'Validator `{{ $labels.moniker }}` is missing `{{ $value }}` blocks!'
 
     - alert: DegradedSyncing
       expr: increase(tendermint_consensus_latest_block_height[5m]) < 10
@@ -147,3 +147,21 @@ groups:
         service: cosmos-monitoring
       annotations:
         description: 'Degraded syncing performance - Job {{ $labels.job }} on {{ $labels.instance }}'
+
+    - alert: LowInRank
+      expr: cosmos_validator_rank > increase(count(cosmos_validators_active == 1)) - 10
+      for: 5m
+      labels:
+        severity: major
+        service: cosmos-monitoring
+      annotations:
+        description: 'Your validator `{{ $labels.moniker }}` rank is `{{ $value }}`!'
+        
+    - alert: LowInRank
+      expr: cosmos_validator_jailed == 1
+      for: 5m
+      labels:
+        severity: critical
+        service: cosmos-monitoring
+      annotations:
+        description: 'Your validator `{{ $labels.moniker }}` is jailed! `{{ $value }}`!'
