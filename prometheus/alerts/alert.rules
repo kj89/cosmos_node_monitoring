@@ -149,7 +149,7 @@ groups:
         description: 'Degraded syncing performance - Job {{ $labels.job }} on {{ $labels.instance }}'
 
     - alert: LowInRank
-      expr: cosmos_validator_rank > increase(count(cosmos_validators_active == 1)) - 10
+      expr: cosmos_validator_rank > (count(cosmos_validators_active == 1) - 10)
       for: 5m
       labels:
         severity: major
