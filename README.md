@@ -18,6 +18,8 @@ make sure following ports are open:
 - `9300` (cosmos-exporter)
 
 ## Deployment
+Monitoring stack needs to be deployed on seperate machine to be able to notify in case if validator goes down! 
+To run monitoring stack you dont need beastly server with multiple cores. It will be more than enough to run it on smallest available vps
 
 ### System requirements
 Ubuntu 20.04 / 1 VCPU / 2 GB RAM / 20 GB SSD
