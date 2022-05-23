@@ -19,7 +19,8 @@ sudo apt-get update
 echo "=================================================="
 
 echo -e "\e[1m\e[32m2. Installing required dependencies... \e[0m" && sleep 1
-
+sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.23.1/yq_linux_amd64 && chmod +x /usr/local/bin/yq
+sudo apt-get install jq -y
 echo "=================================================="
 
 echo -e "\e[1m\e[32m3. Checking if Docker is installed... \e[0m" && sleep 1
