@@ -19,8 +19,8 @@ sudo apt-get update
 echo "=================================================="
 
 echo -e "\e[1m\e[32m2. Installing required dependencies... \e[0m" && sleep 1
-sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.23.1/yq_linux_amd64 && chmod +x /usr/local/bin/yq
-sudo apt-get install jq -y
+sudo apt install python3-pip
+sudo pip install yq
 echo "=================================================="
 
 echo -e "\e[1m\e[32m3. Checking if Docker is installed... \e[0m" && sleep 1
@@ -57,3 +57,5 @@ echo -e "\e[1m\e[32m5. Downloading Node Monitoring config files ... \e[0m" && sl
 
 rm -rf cosmos_node_monitoring
 git clone https://github.com/kj89/cosmos_node_monitoring.git
+
+chmod +x $HOME/cosmos_node_monitoring/add_validator.sh
