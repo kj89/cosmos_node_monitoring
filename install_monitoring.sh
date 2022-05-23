@@ -27,7 +27,6 @@ echo -e "\e[1m\e[32m3. Checking if Docker is installed... \e[0m" && sleep 1
 
 if ! command -v docker &> /dev/null
 then
-
     echo -e "\e[1m\e[32m3.1 Installing Docker... \e[0m" && sleep 1
     sudo apt-get install ca-certificates curl gnupg lsb-release wget -y
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
@@ -43,7 +42,6 @@ echo -e "\e[1m\e[32m4. Checking if Docker Compose is installed ... \e[0m" && sle
 docker compose version
 if [ $? -ne 0 ]
 then
-
     echo -e "\e[1m\e[32m4.1 Installing Docker Compose v2.3.3 ... \e[0m" && sleep 1
     mkdir -p ~/.docker/cli-plugins/
     curl -SL https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-linux-x86_64 -o ~/.docker/cli-plugins/docker-compose
