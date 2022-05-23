@@ -59,11 +59,12 @@ $HOME/cosmos_node_monitoring/add_validator.sh VALIDATOR_IP WALLET_ADDRESS VALOPE
 
 > example: ```$HOME/cosmos_node_monitoring/add_validator.sh 1.2.3.4 cosmosvaloper1s9rtstp8amx9vgsekhf3rk4rdr7qvg8dlxuy8v cosmos1s9rtstp8amx9vgsekhf3rk4rdr7qvg8d6jg3tl cosmos```
 
+To add more validators just run command above with validator values
+
 ### Run docker compose
 Deploy the monitoring stack
 ```
-cd $HOME/cosmos_node_monitoring
-docker compose up -d
+cd $HOME/cosmos_node_monitoring && docker compose up -d
 ```
 
 ports used:
