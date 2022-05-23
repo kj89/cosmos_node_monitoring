@@ -19,8 +19,10 @@ sudo apt-get update
 echo "=================================================="
 
 echo -e "\e[1m\e[32m2. Installing required dependencies... \e[0m" && sleep 1
+sudo apt install jq -y
 sudo apt install python3-pip -y
 sudo pip install yq
+
 echo "=================================================="
 
 echo -e "\e[1m\e[32m3. Checking if Docker is installed... \e[0m" && sleep 1
