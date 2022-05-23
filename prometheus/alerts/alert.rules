@@ -157,7 +157,7 @@ groups:
       annotations:
         description: 'Your validator `{{ $labels.moniker }}` rank is `{{ $value }}`!'
         
-    - alert: LowInRank
+    - alert: IsJailed
       expr: cosmos_validator_jailed == 1
       for: 5m
       labels:
