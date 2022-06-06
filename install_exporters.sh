@@ -39,9 +39,6 @@ KillSignal=SIGTERM
 WantedBy=multi-user.target
 EOF
 
-sudo systemctl enable cosmos-exporter
-sudo systemctl start cosmos-exporter
-
 echo -e "\e[1m\e[32m2. Installing node-exporter... \e[0m" && sleep 1
 # install node-exporter
 wget https://github.com/prometheus/node_exporter/releases/download/v1.3.1/node_exporter-1.3.1.linux-amd64.tar.gz
@@ -67,6 +64,9 @@ WantedBy=multi-user.target
 EOF
 
 sudo systemctl daemon-reload
+sudo systemctl enable cosmos-exporter
+sudo systemctl start cosmos-exporter
+sudo systemctl enable node_exporter
 sudo systemctl start node_exporter
 
 echo -e "\e[1m\e[32mInstallation finished... \e[0m" && sleep 1
