@@ -1,13 +1,7 @@
 #!/usr/bin/env bash
 
-read -p "Enter bond_denom value, for example, ubld for Agoric: " BOND_DENOM
-read -p "Enter bench_prefix value, for example, agoric for Agoric: " BENCH_PREFIX
-
-echo '================================================='
-echo -e "bond_denom: \e[1m\e[32m$BOND_DENOM\e[0m"
-echo -e "bench_prefix: \e[1m\e[32m$BENCH_PREFIX\e[0m"
-echo '================================================='
-sleep 3
+BOND_DENOM=usei
+BENCH_PREFIX=sei
 
 echo -e "\e[1m\e[32m1. Installing cosmos-exporter... \e[0m" && sleep 1
 # install cosmos-exporter
