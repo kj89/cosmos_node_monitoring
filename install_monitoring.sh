@@ -58,4 +58,4 @@ echo -e "\e[1m\e[32m5. Downloading Node Monitoring config files ... \e[0m" && sl
 rm -rf cosmos_node_monitoring
 git clone https://github.com/sei-protocol/sei-node-monitoring.git
 
-chmod +x $HOME/sei-node-monitoring/add_validator.sh
+chmod +x /home/ubuntu/sei-node-monitoring/add_validator.sh
