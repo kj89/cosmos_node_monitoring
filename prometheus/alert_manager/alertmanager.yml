@@ -11,13 +11,12 @@ route:
   repeat_interval: 1h
   
   routes:
-    - receiver: 'node-monitoring'
+    - receiver: 'seinetwork-rules
       group_by: ['...']
 
-  receiver: node-monitoring
+  receiver: seinetwork-rules
 
 receivers:
-- name: 'node-monitoring'
-  webhook_configs:
-  - send_resolved: true
-    url: 'http://alertmanager-bot:8080'
+- name: 'seinetwork-rules'
+  pagerduty_configs:
+    - service_key: 'REPLACEME'
