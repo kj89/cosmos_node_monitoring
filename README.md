@@ -27,44 +27,23 @@ Ubuntu 20.04 / 1 VCPU / 2 GB RAM / 20 GB SSD
 ### Install monitoring stack
 To install monitirng stack you can use one-liner below
 ```
-wget -O install_monitoring.sh https://raw.githubusercontent.com/kj89/cosmos_node_monitoring/master/install_monitoring.sh && chmod +x install_monitoring.sh && ./install_monitoring.sh
-```
-
-### Copy _.env.example_ into _.env_
-```
-cp $HOME/cosmos_node_monitoring/config/.env.example $HOME/cosmos_node_monitoring/config/.env
-```
-
-### Update values in _.env_ file
-```
-vim $HOME/cosmos_node_monitoring/config/.env
-```
-
-| KEY | VALUE |
-|---------------|-------------|
-| TELEGRAM_ADMIN | Your user id you can get from [@userinfobot](https://t.me/userinfobot). The bot will only reply to messages sent from the user. All other messages are dropped and logged on the bot's console |
-| TELEGRAM_TOKEN | Your telegram bot access token you can get from [@botfather](https://telegram.me/botfather). To generate new token just follow a few simple steps described [here](https://core.telegram.org/bots#6-botfather) |
-
-### Export _.env_ file values into _.bash_profile_
-```
-echo "export $(xargs < $HOME/cosmos_node_monitoring/config/.env)" > $HOME/.bash_profile
-source $HOME/.bash_profile
+wget -O install_monitoring.sh https://raw.githubusercontent.com/sei-protocol/sei-node-monitoring/master/install_monitoring.sh && chmod +x install_monitoring.sh && ./install_monitoring.sh
 ```
 
 ### Add validator into _prometheus_ configuration file
 To add validator use command with specified `VALIDATOR_IP`, `VALOPER_ADDRESS`, `WALLET_ADDRESS` and `PROJECT_NAME`
 ```
-$HOME/cosmos_node_monitoring/add_validator.sh VALIDATOR_IP VALOPER_ADDRESS WALLET_ADDRESS PROJECT_NAME
+$HOME/sei-node-monitoring/add_validator.sh VALIDATOR_IP VALOPER_ADDRESS WALLET_ADDRESS PROJECT_NAME
 ```
 
-> example: ```$HOME/cosmos_node_monitoring/add_validator.sh 1.2.3.4 cosmosvaloper1s9rtstp8amx9vgsekhf3rk4rdr7qvg8dlxuy8v cosmos1s9rtstp8amx9vgsekhf3rk4rdr7qvg8d6jg3tl cosmos```
+> example: ```$HOME/sei-node-monitoring/add_validator.sh 1.2.3.4 cosmosvaloper1s9rtstp8amx9vgsekhf3rk4rdr7qvg8dlxuy8v cosmos1s9rtstp8amx9vgsekhf3rk4rdr7qvg8d6jg3tl cosmos```
 
 To add more validators just run command above with validator values
 
 ### Run docker compose
 Deploy the monitoring stack
 ```
-cd $HOME/cosmos_node_monitoring && docker compose up -d
+cd $HOME/sei-node-monitoring && docker compose up -d
 ```
 
 ports used:
