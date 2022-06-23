@@ -12,7 +12,15 @@ groups:
       # Labels - additional labels to be attached to the alert
       labels:
         severity: 'critical'
-
+### Alert for upgrades
+#    - alert: ApproachingUpgradeHeight
+#      expr: (681000 - tendermint_consensus_latest_block_height) < 1000 and (681000 - tendermint_consensus_latest_block_height) > 0
+#      for: 2m
+#      annotations:
+#        title: 'Approaching upgrade height.'
+#        description: 'We are 1000 blocks away from the upgrade height defined above. Please prepare to perform upgrade'
+#      labels:
+#        severity: 'critical'
     - alert: NodeFilesystemReadonly
       expr: node_filesystem_readonly{fstype!~"rootfs|nfs4"} > 0
       for: 5m
