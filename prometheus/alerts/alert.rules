@@ -41,14 +41,6 @@ groups:
       annotations:
         description: 'p50 latencies for blocks is greater than 3 seconds. Please investigate.'
 
-    - alert: ValidatorIsJailed
-      expr: cosmos_validator_jailed == 1
-      for: 5m
-      labels:
-        severity: critical
-        service: cosmos-monitoring
-      annotations:
-        description:'Validator "{{ $labels.moniker }}" is jailed.'
     - alert: NodeFilesystemReadonly
       expr: node_filesystem_readonly{fstype!~"rootfs|nfs4"} > 0
       for: 5m
