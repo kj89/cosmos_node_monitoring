@@ -12,6 +12,7 @@ groups:
       # Labels - additional labels to be attached to the alert
       labels:
         severity: 'critical'
+
 ### Alert for upgrades
 #    - alert: ApproachingUpgradeHeight
 #      expr: (681000 - tendermint_consensus_latest_block_height) < 1000 and (681000 - tendermint_consensus_latest_block_height) > 0
@@ -21,6 +22,33 @@ groups:
 #        description: 'We are 1000 blocks away from the upgrade height defined above. Please prepare to perform upgrade'
 #      labels:
 #        severity: 'critical'
+
+    - alert: ChainHalted
+      expr: rate(tendermint_consensus_latest_block_height[1m]) == 0
+      for: 5m
+      labels:
+        service: cosmos-monitoring
+        severity: critical
+      annotations:
+        description: 'No new blocks have been produced in 5m. Please investigate.'
+
+    - alert: HighBlockTimes
+      expr: histogram_quantile(0.5, sum(rate(tendermint_consensus_block_interval_seconds_bucket[5m])) by (le)) > 3
+      for: 5m
+      labels:
+        service: cosmos-exporter
+        severity: critical
+      annotations:
+        description: 'p50 latencies for blocks is greater than 3 seconds. Please investigate.'
+
+    - alert: ValidatorIsJailed
+      expr: cosmos_validator_jailed == 1
+      for: 5m
+      labels:
+        severity: critical
+        service: cosmos-monitoring
+      annotations:
+        description:'Validator "{{ $labels.moniker }}" is jailed.'
     - alert: NodeFilesystemReadonly
       expr: node_filesystem_readonly{fstype!~"rootfs|nfs4"} > 0
       for: 5m
