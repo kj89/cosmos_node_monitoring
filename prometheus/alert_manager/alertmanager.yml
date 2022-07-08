@@ -11,7 +11,7 @@ route:
   repeat_interval: 1h
   
   routes:
-    - receiver: 'seinetwork-rules
+    - receiver: 'seinetwork-rules'
       group_by: ['...']
 
   receiver: seinetwork-rules
