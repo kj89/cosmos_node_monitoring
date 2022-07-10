@@ -159,8 +159,8 @@ groups:
         description: 'P2P Peers on `{{ $labels.instance }}` is lower than threshold (current value: {{ $value }})'
 
     - alert: MissingBlocks
-      expr: increase(cosmos_validator_missed_blocks[5m]) > 10
-      for: 5m
+      expr: increase(cosmos_validator_missed_blocks[1m]) > 10
+      for: 10m
       labels:
         severity: major
         service: cosmos-monitoring
