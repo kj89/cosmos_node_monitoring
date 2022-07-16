@@ -54,7 +54,7 @@ fi
 echo "=================================================="
 
 echo -e "\e[1m\e[32m5. Downloading Node Monitoring config files ... \e[0m" && sleep 1
-
+cd $HOME
 rm -rf cosmos_node_monitoring
 git clone https://github.com/kj89/cosmos_node_monitoring.git
 
