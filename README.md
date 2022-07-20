@@ -12,10 +12,15 @@ wget -O install_exporters.sh https://raw.githubusercontent.com/kj89/cosmos_node_
 |---------------|-------------|
 | **bond_denom** | Denominated token name, for example, `ubld` for Agoric. You can find it in genesis file |
 | **bench_prefix** | Prefix for chain addresses, for example, `agoric` for Agoric. You can find it in public addresses like this **agoric**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
+| **rpc_port** | Your validator `rpc` port that is defined in `config.toml` file. Default value for aura is `26657` |
+| **grpc_port** | Your validator `grpc` port that is defined in `app.toml` file. Default value for aura is `9090` |
+
+make sure prometheus is enabled in validator `config.toml` file
 
 make sure following ports are open:
 - `9100` (node-exporter)
 - `9300` (cosmos-exporter)
+- `26660` (validator prometheus)
 
 ## Deployment
 Monitoring stack needs to be deployed on seperate machine to be able to notify in case if validator goes down! 
