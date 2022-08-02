@@ -15,7 +15,7 @@ groups:
 
 ### Alert for upgrades
     - alert: ApproachingUpgradeHeight
-      expr: (${UPGRADE_HEIGHT} - tendermint_consensus_latest_block_height) < 1000 and (${UPGRADE_HEIGHT} - tendermint_consensus_latest_block_height) > 0
+      expr: (${UPGRADE_HEIGHT} - tendermint_consensus_latest_block_height) < 2000 and (${UPGRADE_HEIGHT} - tendermint_consensus_latest_block_height) > 0
       for: 2m
       annotations:
         title: 'Approaching upgrade height.'
