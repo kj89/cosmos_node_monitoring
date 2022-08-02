@@ -14,14 +14,14 @@ groups:
         severity: 'critical'
 
 ### Alert for upgrades
-#    - alert: ApproachingUpgradeHeight
-#      expr: (681000 - tendermint_consensus_latest_block_height) < 1000 and (681000 - tendermint_consensus_latest_block_height) > 0
-#      for: 2m
-#      annotations:
-#        title: 'Approaching upgrade height.'
-#        description: 'We are 1000 blocks away from the upgrade height defined above. Please prepare to perform upgrade'
-#      labels:
-#        severity: 'critical'
+    - alert: ApproachingUpgradeHeight
+      expr: (${UPGRADE_HEIGHT} - tendermint_consensus_latest_block_height) < 1000 and (${UPGRADE_HEIGHT} - tendermint_consensus_latest_block_height) > 0
+      for: 2m
+      annotations:
+        title: 'Approaching upgrade height.'
+        description: 'We are 2000 blocks away from the upgrade height defined above. Please prepare to perform upgrade'
+      labels:
+        severity: 'critical'
 
     - alert: ChainHalted
       expr: rate(tendermint_consensus_latest_block_height[1m]) == 0

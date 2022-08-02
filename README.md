@@ -27,7 +27,7 @@ Ubuntu 20.04 / 1 VCPU / 2 GB RAM / 20 GB SSD
 ### Install monitoring stack
 To install monitirng stack you can use one-liner below
 ```
-wget -O install_monitoring.sh https://raw.githubusercontent.com/sei-protocol/sei-node-monitoring/master/install_monitoring.sh && chmod +x install_monitoring.sh && ./install_monitoring.sh
+wget -O install_monitoring.sh https://raw.githubusercontent.com/sei-protocol/sei-node-monitoring/master/install_monitoring.sh && chmod +x install_monitoring.sh && ./install_monitoring.sh $NODE_IP
 ```
 
 ### Add validator into _prometheus_ configuration file
