@@ -1,4 +1,8 @@
 #!/bin/bash
+if [ -z "$1" ]
+  then
+    echo "Node IP must be provided"
+fi
 echo "=================================================="
 echo -e "\033[0;35m"
 echo " :::    ::: ::::::::::: ::::    :::  ::::::::  :::::::::  :::::::::: ::::::::  ";
@@ -59,3 +63,17 @@ rm -rf cosmos_node_monitoring
 git clone https://github.com/sei-protocol/sei-node-monitoring.git
 
 chmod +x /home/ubuntu/sei-node-monitoring/add_validator.sh
+# Insert starting upgrade height
+UPGRADE_HEIGHT=0 envsubst '${UPGRADE_HEIGHT}' < /home/ubuntu/sei-node-monitoring/prometheus/alerts/alert.rules.TEMPLATE > /home/ubuntu/sei-node-monitoring/prometheus/alerts/alert.rules
+
+echo -e "\e[1m\e[32m5. Installing upgrade checker ... \e[0m"
+curl -LO https://go.dev/dl/go1.18beta1.linux-amd64.tar.gz
+tar -C /usr/local -xzf go1.18beta1.linux-amd64.tar.gz
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+source ~/.bashrc
+cd /home/ubuntu/ && git clone https://github.com/sei-protocol/sei-chain.git && cd sei-chain && make install
+touch /var/log/upgrade-checker.log
+chmod +x /home/ubuntu/sei-node-monitoring/upgrade-checker.sh
+(crontab -l 2>/dev/null; echo "* * * * * /home/ubuntu/sei-node-monitoring/upgrade-checker.sh $1 >> /var/log/upgrade-checker.log 2>&1") | crontab -
