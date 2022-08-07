@@ -19,4 +19,4 @@ route:
 receivers:
 - name: 'seinetwork-rules'
   pagerduty_configs:
-    - service_key: 'REPLACEME'
+    - service_key: '${PAGERDUTY_SERVICE_KEY}'
