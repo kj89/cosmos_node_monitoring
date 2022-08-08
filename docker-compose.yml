@@ -24,6 +24,7 @@ services:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
       - '--web.enable-lifecycle'
+      - '--web.external-url=http://${EXTERNAL_URL}:9090/'
     ports:
       - 9090:9090
     networks:
@@ -95,10 +96,10 @@ services:
         source: ./prometheus/alert_manager
         target: /etc/alertmanager
         read_only: true
-    command: [
-      '--config.file=/etc/alertmanager/alertmanager.yml',
-      '--log.level=debug',
-    ]
+    command: 
+      - '--config.file=/etc/alertmanager/alertmanager.yml'
+      - '--log.level=debug'
+      - '--web.external-url=http://${EXTERNAL_URL}:9093/'
     hostname: 'alertmanager'
     restart: always
 
