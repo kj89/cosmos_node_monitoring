@@ -65,6 +65,10 @@ git clone https://github.com/sei-protocol/sei-node-monitoring.git
 chmod +x /home/ubuntu/sei-node-monitoring/add_validator.sh
 # Insert starting upgrade height
 UPGRADE_HEIGHT=0 envsubst '${UPGRADE_HEIGHT}' < /home/ubuntu/sei-node-monitoring/prometheus/alerts/alert.rules.TEMPLATE > /home/ubuntu/sei-node-monitoring/prometheus/alerts/alert.rules
+# Insert PagerDuty service key 
+envsubst < /home/ubuntu/sei-node-monitoring/prometheus/alert_manager/alertmanager.yml.TEMPLATE > /home/ubuntu/sei-node-monitoring/prometheus/prometheus/alert_manager/alertmanager.yml
+
+
 
 echo -e "\e[1m\e[32m5. Installing upgrade checker ... \e[0m"
 curl -LO https://go.dev/dl/go1.18beta1.linux-amd64.tar.gz
