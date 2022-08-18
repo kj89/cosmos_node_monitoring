@@ -1,2 +1,6 @@
 config/.env
 .idea
+# Auto generated. Don't overwrite
+prometheus/alert_manager/alertmanager.yml
+# Populated by add_validators. Don't overwrite
+prometheus/prometheus.yml
