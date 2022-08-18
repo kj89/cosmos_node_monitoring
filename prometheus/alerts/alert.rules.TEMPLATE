@@ -13,7 +13,6 @@ groups:
       labels:
         severity: 'critical'
 
-### Alert for upgrades
     - alert: ApproachingUpgradeHeight
       expr: (${UPGRADE_HEIGHT} - tendermint_consensus_latest_block_height) < 2000 and (${UPGRADE_HEIGHT} - tendermint_consensus_latest_block_height) > 0
       for: 2m
@@ -22,6 +21,15 @@ groups:
         description: 'We are 2000 blocks away from the upgrade height defined above. Please prepare to perform upgrade'
       labels:
         severity: 'critical'
+
+    - alert: EndBlockPanic
+      expr: endblockpanic > 0
+      for: 2m
+      annotations:
+        title: 'Panic detected in EndBlock'
+        description: A panic has been detected in the end block for {{ $labels.module }}. Please investigate
+      labels:
+        severity: critical
 
     - alert: ChainHalted
       expr: rate(tendermint_consensus_latest_block_height[1m]) == 0
