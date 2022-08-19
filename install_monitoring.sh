@@ -82,5 +82,5 @@ cd /home/ubuntu/ && git clone https://github.com/sei-protocol/sei-chain.git && c
 touch /var/log/upgrade-checker.log
 chmod +x /home/ubuntu/sei-node-monitoring/upgrade-checker.sh
 if ! crontab -l | grep -q upgrade-checker; then
-    (crontab -l 2>/dev/null; echo "* * * * * /home/ubuntu/sei-node-monitoring/upgrade-checker.sh $1 >> /var/log/upgrade-checker.log 2>&1") | crontab -
+    (crontab -l 2>/dev/null; echo "0 * * * * /home/ubuntu/sei-node-monitoring/upgrade-checker.sh $1 >> /var/log/upgrade-checker.log 2>&1") | crontab -
 fi
