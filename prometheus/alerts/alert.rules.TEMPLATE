@@ -22,6 +22,15 @@ groups:
       labels:
         severity: 'critical'
 
+    - alert: BeginBlockPanic
+      expr: beginblockpanic > 0
+      for: 2m
+      annotations:
+        title: 'Panic detected in BeginBlock'
+        description: A panic has been detected in the end block for {{ $labels.module }}. Please investigate
+      labels:
+        severity: critical
+
     - alert: EndBlockPanic
       expr: endblockpanic > 0
       for: 2m
