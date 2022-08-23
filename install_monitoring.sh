@@ -60,7 +60,6 @@ echo "=================================================="
 echo -e "\e[1m\e[32m5. Downloading Node Monitoring config files ... \e[0m" && sleep 1
 
 rm -rf cosmos_node_monitoring
-git clone https://github.com/sei-protocol/sei-node-monitoring.git
 
 chmod +x /home/ubuntu/sei-node-monitoring/add_validator.sh
 # Insert starting upgrade height
