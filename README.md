@@ -66,10 +66,10 @@ $HOME/cosmos_node_monitoring/add_validator.sh VALIDATOR_IP VALOPER_ADDRESS WALLE
 
 To add more validators just run command above with validator values
 
-### Run docker compose
+### Run docker-compose
 Deploy the monitoring stack
 ```
-cd $HOME/cosmos_node_monitoring && docker compose up -d
+cd $HOME/cosmos_node_monitoring && docker-compose up -d
 ```
 
 ports used:
@@ -169,7 +169,7 @@ Grafana dashboard is devided into 4 sections:
 ## Cleanup all container data
 ```
 cd $HOME/cosmos_node_monitoring
-docker compose down
+docker-compose down
 docker volume prune -f
 ```
 

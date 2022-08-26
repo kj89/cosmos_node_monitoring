@@ -42,14 +42,13 @@ echo "=================================================="
 
 echo -e "\e[1m\e[32m4. Checking if Docker Compose is installed ... \e[0m" && sleep 1
 
-docker compose version
+docker-compose version
 if [ $? -ne 0 ]
 then
-    echo -e "\e[1m\e[32m4.1 Installing Docker Compose v2.3.3 ... \e[0m" && sleep 1
-    mkdir -p ~/.docker/cli-plugins/
-    curl -SL https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-linux-x86_64 -o ~/.docker/cli-plugins/docker-compose
-    chmod +x ~/.docker/cli-plugins/docker-compose
-    sudo chown $USER /var/run/docker.sock
+    echo -e "\e[1m\e[32m4.1 Installing Docker Compose... \e[0m" && sleep 1
+	docker_compose_version=$(wget -qO- https://api.github.com/repos/docker/compose/releases/latest | jq -r ".tag_name")
+	sudo wget -O /usr/bin/docker-compose "https://github.com/docker/compose/releases/download/${docker_compose_version}/docker-compose-`uname -s`-`uname -m`"
+	sudo chmod +x /usr/bin/docker-compose
 fi
 
 echo "=================================================="
