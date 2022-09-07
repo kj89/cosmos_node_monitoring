@@ -10,6 +10,8 @@ GRPC_PORT=${GRPC_PORT:-9090}
 echo '================================================='
 echo -e "bond_denom: \e[1m\e[32m$BOND_DENOM\e[0m"
 echo -e "bench_prefix: \e[1m\e[32m$BENCH_PREFIX\e[0m"
+echo -e "rpc_port: \e[1m\e[32m$RPC_PORT\e[0m"
+echo -e "grpc_port: \e[1m\e[32m$GRPC_PORT\e[0m"
 echo '================================================='
 sleep 3
 
