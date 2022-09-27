@@ -50,13 +50,13 @@ groups:
         description: 'No new blocks have been produced in 5m. Please investigate.'
 
     - alert: HighBlockTimes
-      expr: histogram_quantile(0.5, sum(rate(tendermint_consensus_block_interval_seconds_bucket[5m])) by (le)) > 3
+      expr: histogram_quantile(0.5, sum(rate(tendermint_consensus_block_interval_seconds_bucket[5m])) by (le)) > 0.75
       for: 5m
       labels:
         service: cosmos-exporter
         severity: critical
       annotations:
-        description: 'p50 latencies for blocks is greater than 3 seconds. Please investigate.'
+        description: 'p50 latencies for blocks is greater than 0.75 seconds. Please investigate.'
 
     - alert: NodeFilesystemReadonly
       expr: node_filesystem_readonly{fstype!~"rootfs|nfs4"} > 0
