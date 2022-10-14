@@ -19,7 +19,7 @@ services:
        - type: bind
          source: ./prometheus
          target: /etc/prometheus
-         read_only: true 
+         read_only: true
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
@@ -96,29 +96,9 @@ services:
         source: ./prometheus/alert_manager
         target: /etc/alertmanager
         read_only: true
-    command: 
+    command:
       - '--config.file=/etc/alertmanager/alertmanager.yml'
       - '--log.level=debug'
       - '--web.external-url=http://${EXTERNAL_URL}:9093/'
     hostname: 'alertmanager'
     restart: always
-
-  alertmanager-bot:
-    container_name: alertmanager-bot
-    command:
-      - '--alertmanager.url=http://alertmanager:9093'
-      - '--log.level=info'
-      - '--store=bolt'
-      - '--bolt.path=/data/bot.db'
-      - "--telegram.admin=${TELEGRAM_ADMIN}"
-      - "--telegram.token=${TELEGRAM_TOKEN}"
-    image: metalmatze/alertmanager-bot:0.4.3
-    networks:
-      - cosmos-monitoring
-    ports:
-      - 8080:8080
-    hostname: 'alertmanager-bot'
-    restart: always
-    volumes:
-      - ./data:/data
-      - ./default.tmpl:/templates/default.tmpl
