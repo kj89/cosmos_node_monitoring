@@ -1,7 +1,7 @@
 global:
   resolve_timeout: 1m
 
-templates: 
+templates:
 - 'templates/*'
 
 route:
@@ -9,7 +9,7 @@ route:
   group_wait: 0s
   group_interval: 5m
   repeat_interval: 1h
- 
+
 
   routes:
     - matchers:
@@ -19,8 +19,13 @@ route:
     - matchers:
       - severity="critical"
       receiver: seinetwork-rules
-    
+
+   - matchers:
+      - severity=~"critical|major|testing"
+     receiver: discord-webhook
+
   receiver: seinetwork-rules
+
 
 receivers:
 - name: 'seinetwork-rules'
@@ -30,3 +35,7 @@ receivers:
 - name: 'seinetwork-warning'
   pagerduty_configs:
     - service_key: 'REPLACE-ME'
+
+- name: 'discord-webhook'
+  webhook_configs:
+  - url: 'http://localhost:9094'
