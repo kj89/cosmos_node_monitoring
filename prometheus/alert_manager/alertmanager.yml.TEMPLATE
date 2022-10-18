@@ -36,6 +36,7 @@ receivers:
   pagerduty_configs:
     - service_key: 'REPLACE-ME'
 
-- name: 'discord-webhook'
+- name: 'discord_webhook'
   webhook_configs:
-  - url: 'http://localhost:9094'
+    # Point to container name, docker will resolve it to the right container
+    - url: 'http://alertmanager-discord-bot:9094/alerts'
