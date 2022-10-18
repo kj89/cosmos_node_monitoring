@@ -102,3 +102,20 @@ services:
       - '--web.external-url=http://${EXTERNAL_URL}:9093/'
     hostname: 'alertmanager'
     restart: always
+
+  # Alertmanager -> Discord
+  # You need to set DISCORD_WEBHOOK
+  alertmanager-discord-bot:
+    image: ghcr.io/brandonweng/alertmanager-discord@sha256:b31270ddf860be2615252aab58d294b689b6e9ad59eb17ec83ef85b3be60f979
+    volumes:
+       # Mount volumes for certs when posting requests to Discord
+        - "/etc/ssl/certs:/etc/ssl/certs:ro"
+    container_name: alertmanager-discord-bot
+    command: [
+      '--webhook=${DISCORD_WEBHOOK}'
+    ]
+    networks:
+        - cosmos-monitoring
+    ports:
+        - 9094:9094
+    restart: always
