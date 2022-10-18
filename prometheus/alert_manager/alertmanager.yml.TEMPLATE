@@ -22,7 +22,7 @@ route:
 
    - matchers:
       - severity=~"critical|major|testing"
-     receiver: discord-webhook
+     receiver: discord_webhook
 
   receiver: seinetwork-rules
 
