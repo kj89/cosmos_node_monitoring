@@ -14,7 +14,7 @@ route:
     # Internal test chains should only be warnings and page during business hours
     - matchers:
       - chain_id="sei-loadtest-testnet"
-      receiver: seinetwork-warning
+      receiver: blackhole
     - matchers:
       - chain_id="sei-internal-testnet-1"
       receiver: seinetwork-warning
