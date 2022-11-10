@@ -201,7 +201,7 @@ groups:
         service: cosmos-monitoring
       annotations:
         description: 'Your validator `{{ $labels.moniker }}` rank is `{{ $value }}`!'
-        
+
     - alert: IsJailed
       expr: cosmos_validator_jailed == 1
       for: 5m
@@ -210,3 +210,11 @@ groups:
         service: cosmos-monitoring
       annotations:
         description: 'Your validator `{{ $labels.moniker }}` is jailed! `{{ $value }}`!'
+
+    - alert: LoadTestClientTxsNotCommitted
+      expr: sum(sum_over_time(loadtest_client_sei_tx_failed[5m]) > 5) by (cluster_name, reason)
+      labels:
+        severity: warning
+        service: loadtest-client
+      annotations:
+        description: 'More than 5 TXs failed in the last 5 minutes in `{{ $labels.cluster_name }}` have failed due to `{{ $labels.reason }}` use `loadtest_client_sei_tx_code` to get more information'
