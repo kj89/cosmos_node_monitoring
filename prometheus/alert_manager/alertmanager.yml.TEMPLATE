@@ -10,8 +10,18 @@ route:
   group_interval: 5m
   repeat_interval: 1h
 
-
   routes:
+    # Internal test chains should only be warnings and page during business hours
+    - matchers:
+      - chain_id="sei-loadtest-testnet"
+      receiver: seinetwork-warning
+    - matchers:
+      - chain_id="sei-internal-testnet-1"
+      receiver: seinetwork-warning
+    - matchers:
+      - chain_id="sei-devnet-1"
+      receiver: seinetwork-warning
+
     - matchers:
       - severity="major"
       receiver: seinetwork-warning
@@ -40,3 +50,5 @@ receivers:
   webhook_configs:
     # Point to container name, docker will resolve it to the right container
     - url: 'http://alertmanager-discord-bot:9094/alerts'
+
+- name: blackhole
