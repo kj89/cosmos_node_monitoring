@@ -1,0 +1,13 @@
+[Unit]
+Description=Heatseeker
+After=network.target
+
+[Service]
+User=root
+Type=simple
+ExecStart=/home/ubuntu/heatseeker -vortex http://vortexprotocol.io --node-address 54.183.225.226:26657 --faucet-addrs sei1dhwul4rz8jfwvenqpyhdctax2tuljk2ag0v864
+Restart=on-failure
+LimitNOFILE=6553500
+
+[Install]
+WantedBy=multi-user.target

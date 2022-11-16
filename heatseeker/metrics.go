@@ -71,7 +71,7 @@ func (s *MetricsServer) healthzHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func ReportMetrics(statusCode int) {
+func ReportVortexFEMetrics(statusCode int) {
 	success := statusCode == 200
 	metrics.IncrCounterWithLabels(
 		[]string{"status"},
@@ -79,6 +79,17 @@ func ReportMetrics(statusCode int) {
 		[]metrics.Label{
 			telemetry.NewLabel("success", strconv.FormatBool(success)),
 			telemetry.NewLabel("status_code", strconv.FormatInt(int64(statusCode), 10)),
+		},
+	)
+}
+
+func ReportFaucetMetrics(address string, amount float32, denom string) {
+	metrics.SetGaugeWithLabels(
+		[]string{"faucet_balance"},
+		amount,
+		[]metrics.Label{
+			telemetry.NewLabel("address", address),
+			telemetry.NewLabel("denom", denom),
 		},
 	)
 }
