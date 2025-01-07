@@ -16,11 +16,11 @@ echo '================================================='
 sleep 3
 
 echo -e "\e[1m\e[32m1. Installing cosmos-exporter... \e[0m" && sleep 1
-# install cosmos-exporter
-wget https://github.com/solarlabsteam/cosmos-exporter/releases/download/v0.2.2/cosmos-exporter_0.2.2_Linux_x86_64.tar.gz
-tar xvfz cosmos-exporter*
-sudo cp ./cosmos-exporter /usr/bin
-rm cosmos-exporter* -rf
+# build cosmos-exporter
+git clone https://github.com/a41-official/cosmos-exporter.git && cd cosmos-exporter
+go mod tidy
+go build -o cosmos-exporter
+mv ./cosmos-exporter /usr/bin
 
 sudo useradd -rs /bin/false cosmos_exporter
 
